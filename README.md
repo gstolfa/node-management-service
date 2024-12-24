@@ -4,20 +4,40 @@
 
 ## Technologies Used
 
-- **Spring Boot** 3.x
-- **JPA (Java Persistence API)** with **MySQL** for production database
-- **H2 Database** for integration tests
-- **Swagger** for interactive API documentation
-- **Docker** for running MySQL via a `docker-compose.yaml` file
+- **Spring Boot** 3.x  
+- **JPA (Java Persistence API)** with **MySQL** for the production database  
+- **H2 Database** for integration tests  
+- **Swagger** for interactive API documentation  
+- **Docker** for running MySQL via a `docker-compose.yaml` file  
 
 ## Features
 
 The service exposes the following operations via API:
 
-- **Add a child node to a parent node** (`POST /api/nodes/{parentName}/children`): Adds a new child node under an existing parent node.
-- **Delete a child node** (`DELETE /api/nodes/{parentName}/children/{childName}`): Deletes a child node from a parent node.
-- **Move a node to a new parent** (`PUT /api/nodes/{nodeName}/parent/{parentName}`): Moves a node to a new parent node.
-- **Get all descendants of a node** (`GET /api/nodes/{nodeName}/descendants`): Retrieves a list of all descendant nodes for a given node.
+- **Add a child node to a parent node**  
+  - `POST /api/nodes/{parentName}/children`  
+  - Adds a new child node under an existing parent node.
+
+- **Delete a child node**  
+  - `DELETE /api/nodes/{parentName}/children/{childName}`  
+  - Deletes a child node from a parent node.
+
+- **Move a node to a new parent**  
+  - `PUT /api/nodes/{nodeName}/parent/{parentName}`  
+  - Moves a node to a new parent node.
+
+- **Get all descendants of a node**  
+  - `GET /api/nodes/{nodeName}/descendants`  
+  - Retrieves a list of all descendant nodes for a given node.
+
+## Root Node Initialization
+
+The tree's **root node** is preconfigured and inserted automatically at application startup using the `schema.sql` file located under the `resources` directory. This root node is named **"root"**.
+
+To add child nodes under the root, you can use the following endpoint:  
+
+POST /api/nodes/root/children/{newChildName}
+
 
 ## Database Technologies
 
